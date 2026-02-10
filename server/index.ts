@@ -2,6 +2,15 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { initializeEmailService } from "./services/email";
+import cors from "cors";
+
+app.use(cors({
+  origin: [
+    "https://your-portfolio-name.vercel.app", // Your live frontend URL
+    "http://localhost:5173"                 // Keep local development working
+  ],
+  credentials: true
+}));
 
 const app = express();
 app.use(express.json());
